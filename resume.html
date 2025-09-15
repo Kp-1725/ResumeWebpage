@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K P Nihaal - Resume</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: #f8fafc;
+      }
+      section[id] {
+        scroll-margin-top: 2rem;
+      }
+
+      .section-title {
+        @apply text-2xl font-extrabold text-slate-900 border-b-2 border-teal-500 pb-2 mb-4;
+      }
+      .nav-link {
+        @apply hover:text-teal-600 transition-colors font-medium;
+      }
+      .nav-icon {
+        @apply w-4 h-4 text-teal-600;
+      }
+      .contact-link {
+        @apply flex items-center gap-3 hover:text-teal-600 transition-colors;
+      }
+
+      @media print {
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .no-print {
+          display: none;
+        }
+        .print-shadow-none {
+          box-shadow: none;
+        }
+        .print-no-border {
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="text-slate-700">
+    <div
+      class="container mx-auto max-w-5xl p-4 sm:p-6 lg:p-8 bg-white my-8 rounded-xl shadow-lg print-shadow-none"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12">
+        <aside
+          class="md:col-span-1 md:border-r md:pr-8 border-slate-200 print-no-border md:sticky md:top-8 md:self-start"
+        >
+          <div class="mb-8 text-center md:text-left">
+            <img
+              src="profile.jpg"
+              alt="Profile Picture of K P Nihaal"
+              class="w-32 h-32 rounded-full mx-auto md:mx-0 mb-4 object-cover"
+            />
+            <h1
+              class="text-4xl md:text-5xl font-bold text-slate-800 tracking-tight"
+            >
+              K P Nihaal
+            </h1>
+            <p class="mt-2 text-lg text-teal-600 font-semibold">
+              Pre Grad Student
+            </p>
+          </div>
+
+          <section class="mb-8">
+            <ul class="space-y-3 text-sm">
+              <li><a href="#profile" class="nav-link">Profile</a></li>
+              <li><a href="#education" class="nav-link">Education</a></li>
+              <li><a href="#skills" class="nav-link">Skills</a></li>
+              <li><a href="#certificates" class="nav-link">Certificates</a></li>
+              <li><a href="#interests" class="nav-link">Interests</a></li>
+              <li><a href="#contact" class="nav-link">Contact</a></li>
+              <li>
+                <a href="#extracurricular" class="nav-link">Extra Curricular</a>
+              </li>
+              <li><a href="#languages" class="nav-link">Languages</a></li>
+            </ul>
+          </section>
+        </aside>
+
+        <main class="md:col-span-2 mt-8 md:mt-0">
+          <section id="profile" class="mb-8">
+            <h2 class="section-title">Profile</h2>
+            <p class="text-slate-600 leading-relaxed">
+              Third-year Computer Science student skilled in C, Java,Python,
+              TypeScript, and full-stack development. Seeking a challenging
+              internship to apply my technical knowledge, learn from experienced
+              mentors, and contribute to impactful software projects.
+            </p>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="education" class="mb-8">
+            <h2 class="section-title">Education</h2>
+            <div>
+              <div class="flex flex-col sm:flex-row justify-between mb-1">
+                <h3 class="text-lg font-semibold text-slate-800">
+                  Bachelor of Technology in Computer Science
+                </h3>
+                <p class="text-sm text-slate-500">September 2023 – May 2027</p>
+              </div>
+              <p class="text-md font-medium text-slate-600">
+                K.S School of Engineering and Management, Bangalore
+              </p>
+            </div>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="skills" class="mb-8">
+            <h2 class="section-title">Skills</h2>
+            <ul class="list-disc list-inside text-slate-600 space-y-1">
+              <li>C</li>
+              <li>Java</li>
+              <li>Python</li>
+              <li>TypeScript</li>
+              <li>Full Stack Development</li>
+            </ul>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="certificates" class="mb-8">
+            <h2 class="section-title">Certificates</h2>
+            <ul class="list-disc list-inside text-slate-600 space-y-1">
+              <li>None as of now</li>
+            </ul>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="interests" class="mb-8">
+            <h2 class="section-title">Interests</h2>
+            <ul class="list-disc list-inside text-slate-600 space-y-1">
+              <li>Competitive Gaming</li>
+              <li>Writing</li>
+              <li>Traveling</li>
+              <li>Music</li>
+              <li>Technology Trends</li>
+            </ul>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="contact" class="mb-8">
+            <h2 class="section-title">Contact Info</h2>
+            <div class="space-y-3">
+              <a
+                href="mailto:kpnihaal1725@gmail.com"
+                class="contact-link text-teal-700 hover:underline"
+              >
+                <i data-lucide="mail" class="nav-icon"></i>
+                <span>kpnihaal1725@gmail.com</span>
+              </a>
+              <a
+                href="tel:+916366911112"
+                class="contact-link text-teal-700 hover:underline"
+              >
+                <i data-lucide="phone" class="nav-icon"></i>
+                <span>+91 6366911112</span>
+              </a>
+              <a
+                href="https://maps.app.goo.gl/EyA1UPVzjPj4sfP38"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-link text-teal-700 hover:underline"
+              >
+                <i data-lucide="map-pin" class="nav-icon"></i>
+                <span>Bengaluru, India</span>
+              </a>
+              <a
+                href="https://github.com/Kp-1725"
+                class="contact-link text-teal-700 hover:underline"
+              >
+                <i data-lucide="github" class="nav-icon"></i>
+                <span>github.com/Kp-1725</span>
+              </a>
+            </div>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="extracurricular" class="mb-8">
+            <h2 class="section-title">Extra Curricular</h2>
+            <ul class="list-disc list-inside text-slate-600 space-y-1">
+              <li>Team Leadership</li>
+              <li>Event Management</li>
+            </ul>
+          </section>
+
+          <hr class="my-6 border-t border-teal-200" />
+
+          <section id="languages">
+            <h2 class="section-title">Languages Known</h2>
+            <ul class="list-disc list-inside text-slate-600 space-y-1">
+              <li>Kannada</li>
+              <li>Hindi</li>
+              <li>English</li>
+              <li>German</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
