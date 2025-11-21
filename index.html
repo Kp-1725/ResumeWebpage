@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K P Nihaal - Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: #ffffff;
+        color: #1a202c;
+        min-height: 100vh;
+      }
+
+      .form-input {
+        @apply w-full px-0 py-3 border-b border-gray-300 bg-transparent focus:outline-none focus:border-gray-600 transition-all placeholder-gray-400;
+      }
+
+      .form-input-icon {
+        @apply flex items-center gap-4 mb-8;
+      }
+
+      .form-input-icon i {
+        @apply w-5 h-5 text-gray-600 flex-shrink-0;
+      }
+
+      .btn-primary {
+        width: 100%;
+        background-color: #e4e4e4;
+        color: #333333;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        transition: background-color 0.2s;
+      }
+      .btn-primary:hover {
+        background-color: #d0d0d0;
+      }
+
+      .btn-google {
+        width: 100%;
+        background-color: #e4e4e4;
+        color: #333333;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        transition: background-color 0.2s;
+      }
+      .btn-google:hover {
+        background-color: #d0d0d0;
+      }
+
+      .divider-text {
+        @apply text-center text-gray-400 text-xs uppercase tracking-wide my-6;
+      }
+
+      .forgot-link {
+        @apply text-xs text-gray-500 hover:text-gray-700 transition-colors cursor-pointer;
+      }
+
+      .toggle-form {
+        @apply text-center mt-8 pt-6 border-t border-gray-200;
+      }
+
+      .toggle-form p {
+        @apply text-gray-700 text-sm;
+      }
+
+      .toggle-form a {
+        @apply font-semibold text-gray-700 hover:underline cursor-pointer;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.4s ease-out;
+      }
+
+      .wave-bg {
+        background-image: url("bg.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-5">
+        <div class="flex justify-between items-center">
+          <div class="text-xl font-semibold text-gray-700 tracking-tight">
+            K P Nihaal
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              id="navSignInBtn"
+              class="px-4 py-2 border-2 font-semibold rounded-lg text-sm uppercase tracking-wide"
+              style="
+                border-color: #e4e4e4;
+                color: #333333;
+                background-color: white;
+                cursor: pointer;
+              "
+              onmouseover="this.style.backgroundColor='#e4e4e4'; this.style.color='white'"
+              onmouseout="this.style.backgroundColor='white'; this.style.color='#333333'"
+              onclick="showLogin()"
+            >
+              Sign In
+            </button>
+            <button
+              id="navRegisterBtn"
+              class="px-4 py-2 border-2 font-semibold rounded-lg text-sm uppercase tracking-wide"
+              style="
+                border-color: #e4e4e4;
+                color: #333333;
+                background-color: white;
+                cursor: pointer;
+              "
+              onmouseover="this.style.backgroundColor='#e4e4e4'; this.style.color='white'"
+              onmouseout="this.style.backgroundColor='white'; this.style.color='#333333'"
+              onclick="showRegister()"
+            >
+              Register
+            </button>
+            <button
+              id="logoutBtn"
+              class="hidden px-5 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="authContainer" class="min-h-screen bg-white">
+      <!-- Welcome Section -->
+      <div
+        id="welcomeSection"
+        class="flex items-center justify-center min-h-screen px-4 wave-bg fade-in"
+      >
+        <div class="w-full max-w-md text-center">
+          <h1
+            class="text-5xl font-bold mb-4 tracking-tight"
+            style="color: #e4e4e4"
+          >
+            Welcome
+          </h1>
+          <p class="text-base mb-12 leading-relaxed" style="color: #e4e4e4">
+            Sign in or create an account to view my resume and portfolio
+          </p>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginForm" class="hidden">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-0 h-auto md:min-h-screen"
+        >
+          <!-- Left Side - Branding -->
+          <div
+            class="hidden md:flex flex-col items-center justify-center p-12 bg-gradient-to-br from-blue-500 via-blue-600 to-slate-700 relative overflow-hidden"
+          >
+            <div class="absolute inset-0 opacity-10">
+              <div
+                class="absolute top-10 right-10 w-64 h-64 bg-white rounded-full"
+              ></div>
+              <div
+                class="absolute bottom-10 left-10 w-40 h-40 bg-white rounded-full"
+              ></div>
+            </div>
+            <div class="relative z-10 text-center text-white">
+              <div class="mb-8 flex justify-center">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center"
+                >
+                  <i data-lucide="user" class="w-10 h-10 text-blue-600"></i>
+                </div>
+              </div>
+              <h2 class="text-3xl font-bold mb-4">Welcome Back</h2>
+              <p class="text-blue-100">Access your portfolio and resume</p>
+            </div>
+          </div>
+
+          <!-- Right Side - Form -->
+          <div
+            class="flex flex-col justify-center p-8 md:p-12 md:max-h-screen md:overflow-y-auto"
+          >
+            <h2 class="text-2xl font-bold text-gray-800 mb-8">Sign In</h2>
+            <form id="loginFormElement" onsubmit="handleLogin(event)">
+              <div class="form-input-icon">
+                <i data-lucide="mail"></i>
+                <input
+                  type="email"
+                  id="loginEmail"
+                  required
+                  class="form-input"
+                  placeholder="Email or Mobile"
+                />
+              </div>
+              <div class="form-input-icon">
+                <i data-lucide="lock"></i>
+                <input
+                  type="password"
+                  id="loginPassword"
+                  required
+                  class="form-input"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="text-right mb-6">
+                <a class="forgot-link">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn-primary">SIGN IN</button>
+            </form>
+
+            <div class="divider-text">or</div>
+
+            <button type="button" class="btn-google">
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              SIGN IN WITH GOOGLE
+            </button>
+
+            <div class="toggle-form">
+              <p>
+                Don't Have An Account?
+                <a
+                  onclick="showRegister()"
+                  class="font-semibold text-slate-900 hover:underline"
+                  >SIGN UP</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Form -->
+      <div id="registerForm" class="hidden">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-0 h-auto md:min-h-screen"
+        >
+          <!-- Left Side - Branding -->
+          <div
+            class="hidden md:flex flex-col items-center justify-center p-12 bg-gradient-to-br from-green-500 via-emerald-600 to-slate-700 relative overflow-hidden"
+          >
+            <div class="absolute inset-0 opacity-10">
+              <div
+                class="absolute top-10 right-10 w-64 h-64 bg-white rounded-full"
+              ></div>
+              <div
+                class="absolute bottom-10 left-10 w-40 h-40 bg-white rounded-full"
+              ></div>
+            </div>
+            <div class="relative z-10 text-center text-white">
+              <div class="mb-8 flex justify-center">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center"
+                >
+                  <i
+                    data-lucide="user-plus"
+                    class="w-10 h-10 text-green-600"
+                  ></i>
+                </div>
+              </div>
+              <h2 class="text-3xl font-bold mb-4">Join Us</h2>
+              <p class="text-green-100">Create an account to explore</p>
+            </div>
+          </div>
+
+          <!-- Right Side - Form -->
+          <div
+            class="flex flex-col justify-center p-8 md:p-12 md:max-h-screen md:overflow-y-auto"
+          >
+            <h2 class="text-2xl font-bold text-gray-800 mb-8">
+              Create Account
+            </h2>
+            <form id="registerFormElement" onsubmit="handleRegister(event)">
+              <div class="form-input-icon">
+                <i data-lucide="user"></i>
+                <input
+                  type="text"
+                  id="registerName"
+                  required
+                  class="form-input"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="form-input-icon">
+                <i data-lucide="mail"></i>
+                <input
+                  type="email"
+                  id="registerEmail"
+                  required
+                  class="form-input"
+                  placeholder="Email or Mobile"
+                />
+              </div>
+              <div class="form-input-icon">
+                <i data-lucide="lock"></i>
+                <input
+                  type="password"
+                  id="registerPassword"
+                  required
+                  class="form-input"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-input-icon">
+                <i data-lucide="lock"></i>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  required
+                  class="form-input"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <button type="submit" class="btn-primary">REGISTER</button>
+            </form>
+
+            <div class="toggle-form">
+              <p>
+                Already Have An Account?
+                <a
+                  onclick="showLogin()"
+                  class="font-semibold text-slate-900 hover:underline"
+                  >LOGIN</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard (shown after login) -->
+      <div id="dashboard" class="hidden fade-in">
+        <div class="flex items-center justify-center min-h-screen px-4 wave-bg">
+          <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+            <div class="text-center">
+              <div
+                class="w-16 h-16 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200"
+              >
+                <i data-lucide="check-circle" class="w-8 h-8 text-gray-600"></i>
+              </div>
+              <h2 class="text-2xl font-bold text-gray-800 mb-3">
+                Welcome Back!
+              </h2>
+              <p id="dashboardName" class="text-base text-gray-700 mb-6"></p>
+              <p class="text-gray-700 mb-8 text-sm leading-relaxed">
+                You're all set. Click below to view my resume and portfolio.
+              </p>
+              <a
+                href="resume.html"
+                class="block w-full px-8 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition-colors text-sm uppercase tracking-wide text-center mb-3"
+              >
+                View My Resume
+              </a>
+              <button
+                id="dashboardLogoutBtn"
+                class="w-full px-8 py-3 bg-gray-100 text-gray-800 font-semibold rounded-lg hover:bg-gray-200 transition-colors text-sm uppercase tracking-wide border border-gray-200"
+                onclick="handleLogout()"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      const API_URL = "http://localhost:5000/api";
+
+      // Show/Hide Functions
+      function showWelcome() {
+        document.getElementById("welcomeSection").classList.remove("hidden");
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("registerForm").classList.add("hidden");
+      }
+
+      function showLogin() {
+        document.getElementById("welcomeSection").classList.add("hidden");
+        document.getElementById("loginForm").classList.remove("hidden");
+        document.getElementById("registerForm").classList.add("hidden");
+      }
+
+      function showRegister() {
+        document.getElementById("welcomeSection").classList.add("hidden");
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("registerForm").classList.remove("hidden");
+      }
+
+      function showDashboard() {
+        document.getElementById("authContainer").classList.add("hidden");
+        document.getElementById("dashboard").classList.remove("hidden");
+        document.getElementById("logoutBtn").classList.remove("hidden");
+        document.getElementById("navSignInBtn").classList.add("hidden");
+        document.getElementById("navRegisterBtn").classList.add("hidden");
+      }
+
+      function showAuthContainer() {
+        document.getElementById("authContainer").classList.remove("hidden");
+        document.getElementById("dashboard").classList.add("hidden");
+        document.getElementById("logoutBtn").classList.add("hidden");
+        document.getElementById("navSignInBtn").classList.remove("hidden");
+        document.getElementById("navRegisterBtn").classList.remove("hidden");
+      }
+
+      // Event Listeners
+      document
+        .getElementById("showLoginBtn")
+        .addEventListener("click", showLogin);
+      document
+        .getElementById("showRegisterBtn")
+        .addEventListener("click", showRegister);
+
+      // Authentication Handlers
+      async function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        try {
+          const response = await fetch(`${API_URL}/auth/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            alert(data.error || "Login failed");
+            return;
+          }
+
+          // Store token and user data
+          localStorage.setItem("authToken", data.token);
+          localStorage.setItem("currentUser", JSON.stringify(data.user));
+
+          document.getElementById(
+            "dashboardName"
+          ).textContent = `Hello, ${data.user.name}!`;
+          showDashboard();
+          document.getElementById("loginFormElement").reset();
+        } catch (error) {
+          console.error("Login error:", error);
+          alert("An error occurred during login");
+        }
+      }
+
+      async function handleRegister(event) {
+        event.preventDefault();
+        const name = document.getElementById("registerName").value;
+        const email = document.getElementById("registerEmail").value;
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+          alert("Passwords do not match");
+          return;
+        }
+
+        try {
+          const response = await fetch(`${API_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              password,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            alert(data.error || "Registration failed");
+            return;
+          }
+
+          alert("Registration successful! Please login.");
+          showWelcome();
+          document.getElementById("registerFormElement").reset();
+        } catch (error) {
+          console.error("Registration error:", error);
+          alert("An error occurred during registration");
+        }
+      }
+
+      function handleLogout() {
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("currentUser");
+        showAuthContainer();
+        showWelcome();
+        document.getElementById("loginFormElement").reset();
+        document.getElementById("registerFormElement").reset();
+      }
+
+      // Check if user is already logged in
+      window.addEventListener("load", () => {
+        const currentUser = localStorage.getItem("currentUser");
+        if (currentUser) {
+          const user = JSON.parse(currentUser);
+          document.getElementById(
+            "dashboardName"
+          ).textContent = `Hello, ${user.name}!`;
+          showDashboard();
+        }
+      });
+    </script>
+
+    <footer class="bg-white border-t border-gray-200 py-4">
+      <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-600">
+          &copy; 2025 K P Nihaal. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
