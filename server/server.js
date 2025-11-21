@@ -84,6 +84,19 @@ app.post("/api/auth/register", async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
+    // Password validation - minimum 6 characters and at least 1 uppercase letter
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ error: "Password must be at least 6 characters long" });
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return res.status(400).json({
+        error: "Password must contain at least one uppercase letter",
+      });
+    }
+
     const connection = await pool.getConnection();
 
     // Check if email already exists
